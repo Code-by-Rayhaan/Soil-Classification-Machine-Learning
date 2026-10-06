@@ -426,12 +426,10 @@ st.markdown("""
 # -----------------------------------------------------------------------------
 # 7. MAIN INTERFACE TABS
 # -----------------------------------------------------------------------------
-tab_live, tab_batch, tab_benchmarks, tab_eda, tab_casestudy = st.tabs([
+tab_live, tab_batch, tab_benchmarks = st.tabs([
     "🧪 Live Soil Classifier",
     "📁 Batch CSV Assessment",
-    "📊 Model Benchmark & Comparison",
-    "🔬 Exploratory Data Analysis",
-    "📚 Case Study & Viva Voce Q&A"
+    "📊 Model Benchmark & Comparison"
 ])
 
 # =============================================================================
@@ -743,143 +741,6 @@ with tab_benchmarks:
             )
             fig_fi.update_layout(height=380, margin=dict(l=10, r=10, t=20, b=10), yaxis={'categoryorder':'total ascending'})
             st.plotly_chart(fig_fi, use_container_width=True)
-
-# =============================================================================
-# TAB 4: EXPLORATORY DATA ANALYSIS & SOIL DYNAMICS
-# =============================================================================
-with tab_eda:
-    st.markdown("### 🔬 Exploratory Data Analysis & Pedological Distributions")
-    st.write("Interactive exploration of physical and chemical soil properties across all 8 agronomic classes.")
-
-    if df_data is not None:
-        col_e1, col_e2 = st.columns(2)
-        
-        with col_e1:
-            st.markdown("#### 🌡️ Parameter Distribution by Soil Class")
-            eda_feature = st.selectbox(
-                "Select Soil Characteristic to Inspect:",
-                ["pH", "Nitrogen", "Phosphorus", "Potassium", "Moisture", "Organic_Matter", "Electrical_Conductivity", "Temperature", "Humidity"],
-                index=0
-            )
-            fig_box = px.box(
-                df_data, x="Soil_Type", y=eda_feature, color="Soil_Type",
-                color_discrete_sequence=px.colors.qualitative.Set2
-            )
-            fig_box.update_layout(height=380, showlegend=False, margin=dict(l=10, r=10, t=20, b=10))
-            st.plotly_chart(fig_box, use_container_width=True)
-
-        with col_e2:
-            st.markdown("#### 🧬 Acidity (pH) vs. Salinity (EC) Clustering")
-            fig_scatter = px.scatter(
-                df_data, x="pH", y="Electrical_Conductivity", color="Soil_Type",
-                size="Moisture", hover_data=["Organic_Matter", "Nitrogen"],
-                color_discrete_sequence=px.colors.qualitative.Bold
-            )
-            fig_scatter.add_hline(y=2.0, line_dash="dash", line_color="red", annotation_text="Salinity Threshold (2.0 dS/m)")
-            fig_scatter.add_vline(x=7.0, line_dash="dot", line_color="gray", annotation_text="Neutral pH (7.0)")
-            fig_scatter.update_layout(height=380, margin=dict(l=10, r=10, t=20, b=10))
-            st.plotly_chart(fig_scatter, use_container_width=True)
-
-        st.markdown("---")
-        col_e3, col_e4 = st.columns(2)
-        
-        with col_e3:
-            st.markdown("#### 💧 Moisture (%) vs. Organic Matter (%) Relationship")
-            fig_moist = px.scatter(
-                df_data, x="Organic_Matter", y="Moisture", color="Soil_Type",
-                hover_data=["pH", "Nitrogen", "Potassium"],
-                color_discrete_sequence=px.colors.qualitative.Safe
-            )
-            fig_moist.update_layout(height=380, margin=dict(l=10, r=10, t=20, b=10))
-            st.plotly_chart(fig_moist, use_container_width=True)
-
-        with col_e4:
-            st.markdown("#### 🌾 Macronutrient (NPK) Distribution Profile")
-            fig_npk = px.scatter_3d(
-                df_data, x='Nitrogen', y='Phosphorus', z='Potassium',
-                color='Soil_Type', opacity=0.7, size_max=10
-            )
-            fig_npk.update_layout(height=380, margin=dict(l=10, r=10, t=10, b=10))
-            st.plotly_chart(fig_npk, use_container_width=True)
-
-# =============================================================================
-# TAB 5: CASE STUDY ANSWERS & VIVA VOCE PREPARATION HUB
-# =============================================================================
-with tab_casestudy:
-    st.markdown("### 📚 Case Study 139: Final Analysis & Core Questions Answered")
-    st.write("Rigorous, data-backed technical answers to the 6 core questions formulated in Case Study 139.")
-
-    st.markdown("""
-    <div class="info-callout">
-        <b>Case Study Objective Validation:</b> All findings below are derived from empirical cross-validation runs on 2,800 balanced soil observations across 8 distinct categories.
-    </div>
-    """, unsafe_allow_html=True)
-
-    with st.expander("❓ Question 1: Can soil type be automatically classified?", expanded=True):
-        st.markdown("""
-        **Answer: Yes, with exceptionally high accuracy (> 99%).**  
-        Soil types possess distinct physicochemical signatures across pH, macronutrients (N-P-K), organic carbon, moisture retention, and electrical conductivity. 
-        Machine learning models successfully learn the multi-dimensional decision boundaries separating these classes. 
-        Both **Logistic Regression (99.29%)** and **Random Forest (99.11%)** achieve near-perfect discrimination under 5-Fold Stratified Cross-Validation.
-        """)
-
-    with st.expander("❓ Question 2: Which soil parameter contributes most to classification?", expanded=True):
-        st.markdown("""
-        **Answer: Electrical Conductivity (EC - 18.84%) and Organic Matter (17.56%).**  
-        - **Electrical Conductivity (EC)** is the sharpest differentiator because saline and sodic soils exhibit extreme EC values (> 2.5–6.0 dS/m) compared to non-saline soils (< 1.0 dS/m).
-        - **Organic Matter (%)** provides a distinct fingerprint for Peaty/Bog soils (6.0–9.0%) versus mineral-poor sandy and laterite soils (< 1.0%).
-        - **Moisture (%)** (16.10%) and **pH** (10.14%) follow closely, effectively distinguishing heavy waterlogging clays from well-drained sandy loams and acidic laterites.
-        """)
-
-    with st.expander("❓ Question 3: Which algorithm provides the highest F1-score?", expanded=True):
-        st.markdown("""
-        **Answer: Logistic Regression (Macro F1: 99.29%) and Random Forest (Macro F1: 99.11%).**  
-        - **Logistic Regression** with `StandardScaler` provides outstanding linear separability when normalized across standard z-scores, reaching a 5-Fold CV score of **98.54% ± 0.86%**.
-        - **Random Forest** provides nearly identical performance (**99.11% Test F1, 98.50% CV**) with the added advantage of being completely invariant to unscaled feature magnitudes and robust against outliers.
-        """)
-
-    with st.expander("❓ Question 4: Which soil categories are frequently confused?", expanded=True):
-        st.markdown("""
-        **Answer: Sandy Loam vs. Red Soil (and Alluvial Soil vs. Clayey Soil).**  
-        - **Sandy Loam and Red Soil** exhibit slight boundary overlap because both feature low moisture retention (12–22%), low organic carbon (0.5–1.2%), and mild acidity.
-        - **Alluvial and Clayey Soils** share overlapping neutral pH (6.8–7.2) and high potassium levels, differing primarily in moisture retention and clay fraction.
-        - In contrast, extreme categories (Saline Soil and Peaty Soil) achieve **100% precision and recall with 0 misclassifications**.
-        """)
-
-    with st.expander("❓ Question 5: Does preprocessing improve classification?", expanded=True):
-        st.markdown("""
-        **Answer: Yes, significantly for distance-based and gradient-based models.**  
-        - **K-Nearest Neighbors (KNN):** Accuracy improved from **92.50% (Raw)** to **98.04% (Scaled)** — a massive **+5.54% gain**. Without scaling, features with large numerical ranges (e.g. Potassium: 250 kg/ha) dominate distance metrics over small-range features (e.g. Electrical Conductivity: 0.8 dS/m).
-        - **Logistic Regression:** Without scaling, the gradient descent solver failed to converge within 1000 iterations. Applying `StandardScaler` stabilized gradients and boosted accuracy to **99.29%**.
-        - **Tree Ensembles (DT, RF, GB):** Invariant to monotonic scaling (0% change in split criteria).
-        """)
-
-    with st.expander("❓ Question 6: Can the model classify a completely new soil sample?", expanded=True):
-        st.markdown("""
-        **Answer: Yes, seamlessly through the deployment pipeline.**  
-        The serialized pipeline (`scaler.pkl` + `logistic_regression.pkl` / `random_forest.pkl`) takes raw arbitrary field measurements, scales them to the training distribution, computes probabilistic class likelihoods, and outputs the classified soil category along with confidence percentages and tailored agricultural recommendations.
-        """)
-
-    st.markdown("---")
-    st.markdown("### 🎓 Viva-Voce Examination Preparation Guide (CS401 / ML202)")
-    
-    with st.expander("📖 View Top 10 Technical Viva Questions & Examiner Answers"):
-        st.markdown(r"""
-        1. **Q: Why is Stratified K-Fold CV preferred over regular K-Fold?**  
-           *A: Stratified K-Fold preserves the exact percentage of each soil class in every fold, preventing class distribution bias.*
-           
-        2. **Q: How does Random Forest calculate Feature Importance?**  
-           *A: Via Mean Decrease in Impurity (Gini Importance) — calculating the total reduction in Gini impurity brought by that feature across all decision trees in the forest.*
-           
-        3. **Q: Why does KNN fail without feature scaling?**  
-           *A: KNN computes Euclidean distance $d(p, q) = \sqrt{\sum (p_i - q_i)^2}$. A feature with range 0–300 (Potassium) mathematically overwhelms a feature with range 0–2 (EC), distorting neighborhood calculation.*
-           
-        4. **Q: What is the difference between Macro F1-Score and Weighted F1-Score?**  
-           *A: Macro F1 calculates the arithmetic mean of F1 scores across all classes giving equal weight to each class. Weighted F1 weights each class score by its support (sample count).*
-           
-        5. **Q: How does Gradient Boosting differ from Random Forest?**  
-           *A: Random Forest builds independent trees in parallel (Bagging) and averages outputs. Gradient Boosting builds trees sequentially (Boosting), where each tree corrects the residual errors of prior trees.*
-        """)
 
 # -----------------------------------------------------------------------------
 # 8. FOOTER
