@@ -1,0 +1,883 @@
+{
+    "project_title": "Case Study 139: Soil Classification Using Machine Learning",
+    "dataset_samples": 2800,
+    "features": [
+        "pH",
+        "Nitrogen",
+        "Phosphorus",
+        "Potassium",
+        "Moisture",
+        "Organic_Matter",
+        "Electrical_Conductivity",
+        "Temperature",
+        "Humidity"
+    ],
+    "target_classes": [
+        "Alluvial Soil",
+        "Black Soil",
+        "Clayey Soil",
+        "Laterite Soil",
+        "Peaty Soil",
+        "Red Soil",
+        "Saline Soil",
+        "Sandy Loam"
+    ],
+    "benchmark_summary": [
+        {
+            "Algorithm": "Logistic Regression",
+            "Accuracy": 99.29,
+            "Precision (Macro)": 99.29,
+            "Recall (Macro)": 99.29,
+            "F1-Score (Macro)": 99.29,
+            "F1-Score (Weighted)": 99.29,
+            "5-Fold CV Accuracy (%)": "98.54 \u00b1 0.86%",
+            "CV F1 (Macro %)": 98.53,
+            "Scaling Applied": "StandardScaler"
+        },
+        {
+            "Algorithm": "KNN",
+            "Accuracy": 98.04,
+            "Precision (Macro)": 98.06,
+            "Recall (Macro)": 98.04,
+            "F1-Score (Macro)": 98.03,
+            "F1-Score (Weighted)": 98.03,
+            "5-Fold CV Accuracy (%)": "98.11 \u00b1 0.54%",
+            "CV F1 (Macro %)": 98.1,
+            "Scaling Applied": "StandardScaler"
+        },
+        {
+            "Algorithm": "Decision Tree",
+            "Accuracy": 95.89,
+            "Precision (Macro)": 95.91,
+            "Recall (Macro)": 95.89,
+            "F1-Score (Macro)": 95.88,
+            "F1-Score (Weighted)": 95.88,
+            "5-Fold CV Accuracy (%)": "95.68 \u00b1 0.63%",
+            "CV F1 (Macro %)": 95.67,
+            "Scaling Applied": "None (Raw)"
+        },
+        {
+            "Algorithm": "Random Forest",
+            "Accuracy": 99.11,
+            "Precision (Macro)": 99.11,
+            "Recall (Macro)": 99.11,
+            "F1-Score (Macro)": 99.11,
+            "F1-Score (Weighted)": 99.11,
+            "5-Fold CV Accuracy (%)": "98.50 \u00b1 0.58%",
+            "CV F1 (Macro %)": 98.5,
+            "Scaling Applied": "None (Raw)"
+        },
+        {
+            "Algorithm": "Gradient Boosting",
+            "Accuracy": 98.39,
+            "Precision (Macro)": 98.44,
+            "Recall (Macro)": 98.39,
+            "F1-Score (Macro)": 98.4,
+            "F1-Score (Weighted)": 98.4,
+            "5-Fold CV Accuracy (%)": "98.36 \u00b1 0.51%",
+            "CV F1 (Macro %)": 98.35,
+            "Scaling Applied": "None (Raw)"
+        }
+    ],
+    "confusion_matrices": {
+        "Logistic Regression": [
+            [
+                70,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                69,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                68,
+                0,
+                2
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                69
+            ]
+        ],
+        "KNN": [
+            [
+                69,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                1,
+                69,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                64,
+                0,
+                6
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                3,
+                0,
+                67
+            ]
+        ],
+        "Decision Tree": [
+            [
+                68,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                64,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                2,
+                68,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                1,
+                0,
+                63,
+                0,
+                6
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                1,
+                0,
+                5,
+                0,
+                64
+            ]
+        ],
+        "Random Forest": [
+            [
+                70,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                70,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                68,
+                0,
+                2
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                3,
+                0,
+                67
+            ]
+        ],
+        "Gradient Boosting": [
+            [
+                70,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                69,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                70,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                69,
+                0,
+                1,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                70,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                68,
+                0,
+                2
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                70,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                0,
+                65
+            ]
+        ]
+    },
+    "classification_reports": {
+        "Logistic Regression": {
+            "Alluvial Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Black Soil": {
+                "precision": 1.0,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9928057553956835,
+                "support": 70.0
+            },
+            "Clayey Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Laterite Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Peaty Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Red Soil": {
+                "precision": 0.9714285714285714,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9714285714285714,
+                "support": 70.0
+            },
+            "Saline Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Sandy Loam": {
+                "precision": 0.971830985915493,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9787234042553191,
+                "support": 70.0
+            },
+            "accuracy": 0.9928571428571429,
+            "macro avg": {
+                "precision": 0.9929074446680081,
+                "recall": 0.9928571428571429,
+                "f1-score": 0.9928697163849467,
+                "support": 560.0
+            },
+            "weighted avg": {
+                "precision": 0.992907444668008,
+                "recall": 0.9928571428571429,
+                "f1-score": 0.9928697163849467,
+                "support": 560.0
+            }
+        },
+        "KNN": {
+            "Alluvial Soil": {
+                "precision": 0.9857142857142858,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9857142857142858,
+                "support": 70.0
+            },
+            "Black Soil": {
+                "precision": 1.0,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9928057553956835,
+                "support": 70.0
+            },
+            "Clayey Soil": {
+                "precision": 0.9859154929577465,
+                "recall": 1.0,
+                "f1-score": 0.9929078014184397,
+                "support": 70.0
+            },
+            "Laterite Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Peaty Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Red Soil": {
+                "precision": 0.9552238805970149,
+                "recall": 0.9142857142857143,
+                "f1-score": 0.9343065693430657,
+                "support": 70.0
+            },
+            "Saline Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Sandy Loam": {
+                "precision": 0.9178082191780822,
+                "recall": 0.9571428571428572,
+                "f1-score": 0.9370629370629371,
+                "support": 70.0
+            },
+            "accuracy": 0.9803571428571428,
+            "macro avg": {
+                "precision": 0.9805827348058912,
+                "recall": 0.9803571428571429,
+                "f1-score": 0.9803496686168015,
+                "support": 560.0
+            },
+            "weighted avg": {
+                "precision": 0.980582734805891,
+                "recall": 0.9803571428571428,
+                "f1-score": 0.9803496686168014,
+                "support": 560.0
+            }
+        },
+        "Decision Tree": {
+            "Alluvial Soil": {
+                "precision": 0.9714285714285714,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9714285714285714,
+                "support": 70.0
+            },
+            "Black Soil": {
+                "precision": 0.9696969696969697,
+                "recall": 0.9142857142857143,
+                "f1-score": 0.9411764705882353,
+                "support": 70.0
+            },
+            "Clayey Soil": {
+                "precision": 0.918918918918919,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9444444444444444,
+                "support": 70.0
+            },
+            "Laterite Soil": {
+                "precision": 0.9722222222222222,
+                "recall": 1.0,
+                "f1-score": 0.9859154929577465,
+                "support": 70.0
+            },
+            "Peaty Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Red Soil": {
+                "precision": 0.9264705882352942,
+                "recall": 0.9,
+                "f1-score": 0.9130434782608695,
+                "support": 70.0
+            },
+            "Saline Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Sandy Loam": {
+                "precision": 0.9142857142857143,
+                "recall": 0.9142857142857143,
+                "f1-score": 0.9142857142857143,
+                "support": 70.0
+            },
+            "accuracy": 0.9589285714285715,
+            "macro avg": {
+                "precision": 0.9591278730984614,
+                "recall": 0.9589285714285714,
+                "f1-score": 0.9587867714956977,
+                "support": 560.0
+            },
+            "weighted avg": {
+                "precision": 0.9591278730984613,
+                "recall": 0.9589285714285715,
+                "f1-score": 0.9587867714956977,
+                "support": 560.0
+            }
+        },
+        "Random Forest": {
+            "Alluvial Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Black Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Clayey Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Laterite Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Peaty Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Red Soil": {
+                "precision": 0.9577464788732394,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9645390070921985,
+                "support": 70.0
+            },
+            "Saline Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Sandy Loam": {
+                "precision": 0.9710144927536232,
+                "recall": 0.9571428571428572,
+                "f1-score": 0.9640287769784173,
+                "support": 70.0
+            },
+            "accuracy": 0.9910714285714286,
+            "macro avg": {
+                "precision": 0.9910951214533579,
+                "recall": 0.9910714285714286,
+                "f1-score": 0.991070973008827,
+                "support": 560.0
+            },
+            "weighted avg": {
+                "precision": 0.9910951214533579,
+                "recall": 0.9910714285714286,
+                "f1-score": 0.991070973008827,
+                "support": 560.0
+            }
+        },
+        "Gradient Boosting": {
+            "Alluvial Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Black Soil": {
+                "precision": 1.0,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9928057553956835,
+                "support": 70.0
+            },
+            "Clayey Soil": {
+                "precision": 0.9859154929577465,
+                "recall": 1.0,
+                "f1-score": 0.9929078014184397,
+                "support": 70.0
+            },
+            "Laterite Soil": {
+                "precision": 1.0,
+                "recall": 0.9857142857142858,
+                "f1-score": 0.9928057553956835,
+                "support": 70.0
+            },
+            "Peaty Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Red Soil": {
+                "precision": 0.918918918918919,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9444444444444444,
+                "support": 70.0
+            },
+            "Saline Soil": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 70.0
+            },
+            "Sandy Loam": {
+                "precision": 0.9701492537313433,
+                "recall": 0.9285714285714286,
+                "f1-score": 0.948905109489051,
+                "support": 70.0
+            },
+            "accuracy": 0.9839285714285714,
+            "macro avg": {
+                "precision": 0.984372958201001,
+                "recall": 0.9839285714285715,
+                "f1-score": 0.9839836082679128,
+                "support": 560.0
+            },
+            "weighted avg": {
+                "precision": 0.9843729582010009,
+                "recall": 0.9839285714285714,
+                "f1-score": 0.9839836082679128,
+                "support": 560.0
+            }
+        }
+    },
+    "feature_importances": [
+        {
+            "Feature": "Electrical_Conductivity",
+            "Random Forest Importance": 0.15446933245228747,
+            "Gradient Boosting Importance": 0.22227602295118434,
+            "Average Importance": 0.1883726777017359
+        },
+        {
+            "Feature": "Organic_Matter",
+            "Random Forest Importance": 0.17672365307895035,
+            "Gradient Boosting Importance": 0.17442741000296752,
+            "Average Importance": 0.17557553154095895
+        },
+        {
+            "Feature": "Moisture",
+            "Random Forest Importance": 0.18346492390564473,
+            "Gradient Boosting Importance": 0.13851955387719136,
+            "Average Importance": 0.16099223889141806
+        },
+        {
+            "Feature": "Humidity",
+            "Random Forest Importance": 0.1028590814067672,
+            "Gradient Boosting Importance": 0.12087500455425104,
+            "Average Importance": 0.11186704298050912
+        },
+        {
+            "Feature": "pH",
+            "Random Forest Importance": 0.14849880651993094,
+            "Gradient Boosting Importance": 0.05432117678069094,
+            "Average Importance": 0.10140999165031095
+        },
+        {
+            "Feature": "Phosphorus",
+            "Random Forest Importance": 0.03728591475018615,
+            "Gradient Boosting Importance": 0.15362540663067656,
+            "Average Importance": 0.09545566069043135
+        },
+        {
+            "Feature": "Potassium",
+            "Random Forest Importance": 0.07944102506806944,
+            "Gradient Boosting Importance": 0.08490346709187076,
+            "Average Importance": 0.08217224607997009
+        },
+        {
+            "Feature": "Nitrogen",
+            "Random Forest Importance": 0.11228822299510796,
+            "Gradient Boosting Importance": 0.04989940651942512,
+            "Average Importance": 0.08109381475726654
+        },
+        {
+            "Feature": "Temperature",
+            "Random Forest Importance": 0.004969039823055828,
+            "Gradient Boosting Importance": 0.001152551591742343,
+            "Average Importance": 0.0030607957073990853
+        }
+    ],
+    "most_confused_pairs": [
+        {
+            "True Soil": "Sandy Loam",
+            "Predicted As": "Red Soil",
+            "Misclassified Count": 3
+        },
+        {
+            "True Soil": "Red Soil",
+            "Predicted As": "Sandy Loam",
+            "Misclassified Count": 2
+        }
+    ],
+    "best_algorithm": "Logistic Regression",
+    "highest_f1_score": 99.29,
+    "top_feature": "Electrical_Conductivity",
+    "timestamp": "2026-10-05"
+}

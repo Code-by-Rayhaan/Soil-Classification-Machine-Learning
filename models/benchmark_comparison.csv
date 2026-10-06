@@ -1,0 +1,6 @@
+Algorithm,Accuracy,Precision (Macro),Recall (Macro),F1-Score (Macro),F1-Score (Weighted),5-Fold CV Accuracy (%),CV F1 (Macro %),Scaling Applied
+Logistic Regression,99.29,99.29,99.29,99.29,99.29,98.54 ± 0.86%,98.53,StandardScaler
+KNN,98.04,98.06,98.04,98.03,98.03,98.11 ± 0.54%,98.1,StandardScaler
+Decision Tree,95.89,95.91,95.89,95.88,95.88,95.68 ± 0.63%,95.67,None (Raw)
+Random Forest,99.11,99.11,99.11,99.11,99.11,98.50 ± 0.58%,98.5,None (Raw)
+Gradient Boosting,98.39,98.44,98.39,98.4,98.4,98.36 ± 0.51%,98.35,None (Raw)
